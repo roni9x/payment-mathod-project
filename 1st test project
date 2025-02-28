@@ -1,0 +1,55 @@
+#roni9x#
+
+class PaymentProcessor:
+    def __init__(self):
+        self.balance = 0.0
+
+    def add_funds(self, amount):
+        if amount <= 0:
+            print("Amount must be greater than zero.")
+            return
+        self.balance += amount
+        print(f"Added ${amount:.2f}. New balance: ${self.balance:.2f}")
+
+    def make_payment(self, amount):
+        if amount <= 0:
+            print("Amount must be greater than zero.")
+            return
+        if amount > self.balance:
+            print("Insufficient funds.")
+            return
+        self.balance -= amount
+        print(f"Payment of ${amount:.2f} made. Remaining balance: ${self.balance:.2f}")
+
+    def check_balance(self):
+        print(f"Current balance: ${self.balance:.2f}")
+
+
+def main():
+    processor = PaymentProcessor()
+    
+    while True:
+        print("\nPayment Processor")
+        print("1. Add Funds")
+        print("2. Make Payment")
+        print("3. Check Balance")
+        print("4. Exit")
+        
+        choice = input("Choose an option: ")
+        
+        if choice == '1':
+            amount = float(input("Enter amount to add: "))
+            processor.add_funds(amount)
+        elif choice == '2':
+            amount = float(input("Enter amount to pay: "))
+            processor.make_payment(amount)
+        elif choice == '3':
+            processor.check_balance()
+        elif choice == '4':
+            print("Log out...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
